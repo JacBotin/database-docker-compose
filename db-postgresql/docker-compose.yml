@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  db_pgsql:
+    image: postgres:11.2-alpine
+    container_name: "postgres"
+    environment:
+      - POSTGRES_DB=db_pg11
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Ur45jhP0!
+      - TZ=GMT
+    volumes:
+      - "$HOME/docker/db_pgsql/data/postgres:/var/lib/postgresql/data"
+    ports:
+      - 6543:5432
+
