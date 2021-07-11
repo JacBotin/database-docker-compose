@@ -1,0 +1,18 @@
+version: '3'
+services:
+
+  oracle11g:
+    image: jaspeen/oracle-xe-11g
+    container_name: oracle11g
+    hostname: oracle11g
+    restart: unless-stopped
+    network_mode: bridge
+    volumes:
+      - ~/docker/db_oracle/data/:/docker-entrypoint-initdb.d/
+    ports:
+      - "1521:1521"
+    environment:
+        ORACLE_ALLOW_REMOTE: "true"
+        ORACLE_DISABLE_ASYNCH_IO: "true"  
+        ORACLE_SID: XE
+       
