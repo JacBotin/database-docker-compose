@@ -1,0 +1,26 @@
+version: '2.1'
+services:
+  ora2pg_table:
+    image: georgmoser/ora2pg:21.1
+    environment:
+      OUTPUT_LOCATION: "/output/"
+      CONFIG_LOCATION: "/config/tables_export.conf"
+    volumes:
+      - ${PWD}/output:/output
+      - ${PWD}/config:/config
+  ora2pg_data:
+    image: georgmoser/ora2pg:21.1
+    environment:
+      OUTPUT_LOCATION: "/output/"
+      CONFIG_LOCATION: "/config/data_export.conf"
+    volumes:
+      - ${PWD}/output:/output
+      - ${PWD}/config:/config
+  ora2pg_sequence:
+    image: georgmoser/ora2pg:21.1
+    environment:
+      OUTPUT_LOCATION: "/output/"
+      CONFIG_LOCATION: "/config/sequences_export.conf"
+    volumes:
+      - ${PWD}/output:/output
+      - ${PWD}/config:/config
