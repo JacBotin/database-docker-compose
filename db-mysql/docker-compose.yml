@@ -3,13 +3,13 @@ version: "3"
 services:
   db_mysql:
     image: mysql:5.7
-    container_name: "mysql"
+    container_name: "mysql57"
     environment:
-      - MYSQL_DATABASE=db_mysql_local
-      - MYSQL_USER=usr_mysql_local
-      - MYSQL_PASSWORD=mysql_local
-      - MYSQL_ROOT_PASSWORD=Ur45jhP0!
+      - MYSQL_DATABASE=${db mysql}
+      - MYSQL_USER=${usr mysql}
+      - MYSQL_PASSWORD=${pwd mysql}
+      - MYSQL_ROOT_PASSWORD=${pwd user root}
     volumes:
-      - "$HOME/docker/db_mysql/data/mysql:/var/lib/mysql"
+      - ${PWD}/docker/db_mysql/data/mysql:/var/lib/mysql"
     ports:
       - 3306:3306
