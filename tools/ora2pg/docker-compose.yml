@@ -1,26 +1,21 @@
-version: '2.1'
+version: '3.3'
 services:
-  ora2pg_table:
+  ora2pg:
+    container_name: ora2pg
     image: georgmoser/ora2pg:21.1
     environment:
       OUTPUT_LOCATION: "/output/"
-      CONFIG_LOCATION: "/config/tables_export.conf"
+      CONFIG_LOCATION: "/config/ora2pg.conf"
+#      ORA_HOST: "DBI:Oracle:host=${host};sid=${instancename};port=1521;database=${dbname}"
+#      ORA_USER: "${useroracle}"
+#      ORA_PWD: "${pwd_useroracle}"      
     volumes:
       - ${PWD}/output:/output
       - ${PWD}/config:/config
-  ora2pg_data:
-    image: georgmoser/ora2pg:21.1
-    environment:
-      OUTPUT_LOCATION: "/output/"
-      CONFIG_LOCATION: "/config/data_export.conf"
-    volumes:
-      - ${PWD}/output:/output
-      - ${PWD}/config:/config
-  ora2pg_sequence:
-    image: georgmoser/ora2pg:21.1
-    environment:
-      OUTPUT_LOCATION: "/output/"
-      CONFIG_LOCATION: "/config/sequences_export.conf"
-    volumes:
-      - ${PWD}/output:/output
-      - ${PWD}/config:/config
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${ipvpn}/24 #avoid clash with VPN
